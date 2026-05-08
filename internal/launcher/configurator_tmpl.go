@@ -106,7 +106,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;font-size:13px;background:#f0f2f5;h
 .tp-hd{padding:6px 10px;font-size:12px;font-weight:600;color:#334;background:#f0f3f8}
 
 /* ── Module editor ───────────────────────────────────── */
-.code-wrap{position:relative;margin-top:8px;border-radius:6px;overflow:hidden;z-index:1}
+.code-wrap{position:relative;margin-top:8px;border-radius:6px;z-index:1}
 .edit-hint{font-size:11px;color:#94a3b8;margin-left:6px}
 .module-tabs{display:flex;gap:0;margin-top:16px;border-bottom:1px solid #d8dde8;z-index:10;position:relative}
 .module-tab{padding:6px 14px;cursor:pointer;font-size:12px;color:#666;border-bottom:2px solid transparent;margin-bottom:-1px}
@@ -114,7 +114,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;font-size:13px;background:#f0f2f5;h
 .module-pane{display:none;margin-top:0;z-index:5}
 .module-pane.active{display:block;position:relative}
 
-.module-editor-wrap{position:relative;margin-top:8px}
+.module-editor-wrap{position:relative;margin-top:8px;z-index:5}
 pre.os-code{
   background:#1e1e2e;color:#cdd6f4;
   font-family:'Cascadia Code','Fira Code','Consolas','Courier New',monospace;
@@ -332,9 +332,8 @@ function startEdit(name) {
   var pre = document.getElementById('pre-'+name);
   var ta  = document.getElementById('ta-'+name);
   ta.value = pre.textContent;
-  pre.style.pointerEvents = 'none';
+  pre.style.display = 'none';
   ta.style.display = 'block';
-  // sync scroll
   ta.addEventListener('scroll', function(){ pre.scrollTop = ta.scrollTop; pre.scrollLeft = ta.scrollLeft; });
   ta.focus();
 }
@@ -342,14 +341,13 @@ function endEdit(name) {
   var pre = document.getElementById('pre-'+name);
   var ta  = document.getElementById('ta-'+name);
   pre.innerHTML = hl(ta.value);
-  pre.style.pointerEvents = '';
+  pre.style.display = '';
   ta.style.display = 'none';
 }
 function hlLive(name) {
   var pre = document.getElementById('pre-'+name);
   var ta  = document.getElementById('ta-'+name);
   pre.innerHTML = hl(ta.value);
-  // grow container so pre stays at least as tall as textarea content
   var h = ta.scrollHeight;
   if (h > pre.offsetHeight) { pre.style.minHeight = h + 'px'; }
 }
