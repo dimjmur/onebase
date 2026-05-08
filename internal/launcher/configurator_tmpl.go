@@ -106,13 +106,13 @@ body{font-family:'Segoe UI',Arial,sans-serif;font-size:13px;background:#f0f2f5;h
 .tp-hd{padding:6px 10px;font-size:12px;font-weight:600;color:#334;background:#f0f3f8}
 
 /* ── Module editor ───────────────────────────────────── */
-.code-wrap{position:relative;margin-top:8px;border-radius:6px;overflow:hidden}
+.code-wrap{position:relative;margin-top:8px;border-radius:6px;overflow:hidden;z-index:1}
 .edit-hint{font-size:11px;color:#94a3b8;margin-left:6px}
-.module-tabs{display:flex;gap:0;margin-top:16px;border-bottom:1px solid #d8dde8}
+.module-tabs{display:flex;gap:0;margin-top:16px;border-bottom:1px solid #d8dde8;z-index:10;position:relative}
 .module-tab{padding:6px 14px;cursor:pointer;font-size:12px;color:#666;border-bottom:2px solid transparent;margin-bottom:-1px}
 .module-tab.active{color:#1a4a80;border-bottom-color:#1a4a80;font-weight:600}
-.module-pane{display:none;margin-top:0}
-.module-pane.active{display:block}
+.module-pane{display:none;margin-top:0;z-index:5}
+.module-pane.active{display:block;position:relative}
 
 .module-editor-wrap{position:relative;margin-top:8px}
 pre.os-code{
@@ -122,14 +122,14 @@ pre.os-code{
   overflow:auto;white-space:pre;min-height:100px;tab-size:2;margin:0;cursor:text
 }
 .os-edit{
-  /* overlay mode: transparent text over highlighted pre */
   position:absolute;inset:0;width:100%;height:100%;
-  color:transparent;caret-color:#cdd6f4;
+  color:#cdd6f4;caret-color:#cdd6f4;
   background:transparent;
   font-family:'Cascadia Code','Fira Code','Consolas','Courier New',monospace;
   font-size:12px;line-height:1.6;padding:14px 16px;
   border:none;resize:none;outline:none;tab-size:2;
-  white-space:pre;overflow:auto;z-index:1
+  white-space:pre;overflow:auto;z-index:10;
+  -webkit-text-fill-color:#cdd6f4
 }
 .os-edit:focus{box-shadow:inset 0 0 0 2px #3070d840}
 .module-save-row{margin-top:8px;display:flex;align-items:center;gap:10px}
